@@ -74,7 +74,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-.recharts-legend-item{
-  margin-left: 10px;
-}

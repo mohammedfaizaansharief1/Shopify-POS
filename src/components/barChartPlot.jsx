@@ -88,17 +88,24 @@ const data = [
 //   return <span style={{ color }}>{value}</span>;
 // };
 
+const formatValue = (value) => new Intl.NumberFormat().format(value); // Format tick values with commas
+
 const BarChartComponnet = () => {
+  // const yTicks = [10,20,30,40,50,60];
   return (
-    <ResponsiveContainer width="100%" aspect={1.5}>
+    <div className="h-[300px] w-[620px]">
+    {/* <ResponsiveContainer width="100%" aspect={1.5}> */}
+    <ResponsiveContainer className="h-[300px] w-[620px]">
       <BarChart barGap={5} barCategoryGap={-50} 
-        width={100}
-        height={100}
+        className="h-[300px] w-[620px] text-[12px]"
+        // wrapperStyle={{fontSize: "12px"}}
+        // width={500}
+        // height={300}
         data={data}
         margin={{
-          top: 50,
-          right: 30,
-          left: 20,
+          top: 30,
+          // right: 30,
+          left: 80,
           bottom: 5,
         }}
       >
@@ -109,9 +116,20 @@ const BarChartComponnet = () => {
           axisLine={{ stroke: "#f5f5f5" }}
           dy={5}
           padding={{left:50,right:30}}
-          height={50}
+          height={40}
         />
-        <YAxis tickLine={false} type="number" dx={-10} axisLine={{ stroke: "#fff" }} width={10} />
+        <YAxis 
+        tickLine={false} 
+        type="number" 
+        dx={-10} 
+        axisLine={{ stroke: "#fff" }} 
+        width={10} 
+        tickCount={6} 
+        tickFormatter={formatValue}
+        // ticks={yTicks}
+        domain={[10000, 60000]}
+        ticks={[10000, 20000, 30000, 40000, 50000, 60000]}
+        />
         <Tooltip cursor={{fill:"#fff"}}/>
         <Legend 
           verticalAlign="bottom" 
@@ -171,7 +189,10 @@ const BarChartComponnet = () => {
         />
       </BarChart>
     </ResponsiveContainer>
+    </div>
   );
 };
 
 export default BarChartComponnet;
+
+
